@@ -53,14 +53,14 @@ GPIO.setup(solenoid, GPIO.OUT)
 #     # setter
 #     self.flow_ticks = value
 
-flow = FlowCounter
-flow.flow_ticks = 0
+flow_counter = FlowCounter
+flow_counter.flow_ticks = 0
 # def flow_rate_callback(flow_sensor):
 #   flow.flow_ticks += 1
 #   if args.debug >= 2:
 #     print "event was detected. flow.flow_ticks: ", flow.flow_ticks
 
-GPIO.add_event_detect(flow_sensor, GPIO.RISING, callback=flow.flow_rate_callback, bouncetime=100)
+GPIO.add_event_detect(flow_sensor, GPIO.RISING, callback=flow_counter.flow_rate_callback, bouncetime=100)
 
 ## calculate flowrate (if useful)
 
@@ -91,7 +91,7 @@ config = ControllerConfig()
 flow_reader = FlowReader(config)
 
 def threaded_readings(interval, flow_reader):
-  Timer(interval, flow_reader.take_reading, ()).start()
+  Timer(interval, flow_reader.take_reading(flow_counter), ()).start()
 
 # def add(x,y):
 #   return x+y
