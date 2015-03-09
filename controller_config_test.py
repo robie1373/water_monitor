@@ -6,10 +6,10 @@ class TestControllerConfig(unittest.TestCase):
     self.a_controller_config = ControllerConfig()
 
   def test_Config_includes_time_frame(self):
-    self.assertEqual(self.a_controller_config.moving_avg_interval(), 300)
+    self.assertEqual(self.a_controller_config.moving_avg_interval, 300)
 
   def test_config_includes_reading_interval(self):
-    self.assertEqual(self.a_controller_config.reading_interval(), 5)
+    self.assertEqual(self.a_controller_config.reading_interval, 5)
 
   def test_can_change_time_frame(self):
     self.a_controller_config.moving_avg_interval = 10
