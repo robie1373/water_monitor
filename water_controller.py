@@ -70,7 +70,7 @@ def calculate_average(readings):
 ## Manual override (turn water on or off? with a switch)
 
 # Main loop
-threaded_readings(reading_interval, readings, flow_ticks)
+threaded_readings(reading_interval, readings)
 
 #testing code
 print "First calculation"
