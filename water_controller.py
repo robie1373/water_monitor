@@ -79,7 +79,7 @@ def take_reading():
     # drop first reading from array
     readings.pop(0)
   # add new reading to end of array
-  readings.append(flow_ticks)
+  readings.append(flow.flow_ticks)
   flow.flow_ticks = 0
   if args.debug >= 1:
     print "readings: ", readings, "flow_ticks: ", flow.flow_ticks
