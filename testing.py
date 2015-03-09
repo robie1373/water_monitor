@@ -32,3 +32,6 @@ moving_avg_time_frame = 300
 ### Interval to take measurements in seconds
 reading_interval = 5
 readings = []
+while True:
+  sleep 5
+  print "waiting"
