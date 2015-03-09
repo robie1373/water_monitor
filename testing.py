@@ -33,5 +33,5 @@ moving_avg_time_frame = 300
 reading_interval = 5
 readings = []
 while True:
-  sleep 5
+  time.sleep(5)
   print "waiting"
