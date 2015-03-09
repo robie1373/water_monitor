@@ -77,7 +77,7 @@ def calculate_average():
 
 # Main loop
 while True:
-  threaded_readings(reading_interval, readings)
+  threaded_readings(reading_interval)
 
 #testing code
   print "Calculation #", x
