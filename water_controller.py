@@ -34,12 +34,28 @@ solenoid = 16
 GPIO.setup(solenoid, GPIO.OUT)
 
 ## use GPIO callback to detect water flow
-flow_ticks = 0
+
+class Flow(int):
+  def __init__(self):
+    self.flow_ticks = 0
+
+  @property
+  def flow_ticks(self):
+    # getter
+    return self._flow_ticks
+
+  @flow_ticks.setter
+  def flow_ticks(self, value):
+    # setter
+    self.flow_ticks = value
+
+flow = Flow
+flow.flow_ticks = 0
 def flow_rate_callback(flow_sensor):
-  global flow_ticks
-  flow_ticks += 1
+  global flow.flow_ticks
+  flow.flow_ticks += 1
   if args.debug >= 2:
-    print "event was detected. flow_ticks: ", flow_ticks
+    print "event was detected. flow.flow_ticks: ", flow.flow_ticks
 
 GPIO.add_event_detect(flow_sensor, GPIO.RISING, callback=flow_rate_callback, bouncetime=100)
 
@@ -57,16 +73,16 @@ def take_reading():
   if args.debug >=1:
     print "taking a reading"
 
-  global flow_ticks
+  global flow.flow_ticks
   global readings
   if len(readings) > int(moving_avg_time_frame / reading_interval):
     # drop first reading from array
     readings.pop(0)
   # add new reading to end of array
   readings.append(flow_ticks)
-  flow_ticks = 0
+  flow.flow_ticks = 0
   if args.debug >= 1:
-    print "readings: ", readings, "flow_ticks: ", flow_ticks
+    print "readings: ", readings, "flow_ticks: ", flow.flow_ticks
 
 def threaded_readings(interval):
   Timer(interval, take_reading, ()).start()
