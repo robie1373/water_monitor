@@ -87,14 +87,11 @@ readings = [0]
 def threaded_readings(interval):
   Timer(interval, take_reading, ()).start()
 
-def add(x,y):
-  return x+y
+# def add(x,y):
+#   return x+y
   
-def calculate_average():
-  if args.debug >= 1:
-    print "calculating the average of ", readings
-
-  return reduce(add, readings)/len(readings)
+# def calculate_average():
+#   return reduce(add, readings)/len(readings)
 
 ## Home mode (do not turn off water)
 
