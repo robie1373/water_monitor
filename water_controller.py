@@ -73,10 +73,13 @@ threaded_readings(reading_interval, readings, flow_ticks)
 
 #testing code
 print "First calculation"
+print readings
 print calculate_average(readings)
 time.sleep(50)
 print "Second calculation"
+print readings
 print calculate_average(readings)
 time.sleep(50)
 print "third calculation"
+print readings
 print calculate_average(readings)
