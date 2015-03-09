@@ -42,16 +42,17 @@ moving_avg_time_frame = 300
 reading_interval = 5
 readings = []
 
-def take_reading(readings, flow_ticks):
+def take_reading(readings):
   if len(readings) > int(moving_avg_time_frame / reading_interval):
+    global flow_ticks
     # drop first reading from array
     readings.pop(0)
   # add new reading to end of array
   readings.append(flow_ticks)
   flow_ticks = 0
 
-def threaded_readings(interval, readings, flow_ticks):
-  Timer(interval, take_reading(readings, flow_ticks), ()).start()
+def threaded_readings(interval, readings):
+  Timer(interval, take_reading(readings), ()).start()
 
 def add(x,y):
   return x+y
