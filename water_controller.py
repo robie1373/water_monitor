@@ -52,7 +52,7 @@ class Flow(int):
 flow = Flow
 flow.flow_ticks = 0
 def flow_rate_callback(flow_sensor):
-  global flow.flow_ticks
+  # global flow.flow_ticks
   flow.flow_ticks += 1
   if args.debug >= 2:
     print "event was detected. flow.flow_ticks: ", flow.flow_ticks
@@ -73,7 +73,7 @@ def take_reading():
   if args.debug >=1:
     print "taking a reading"
 
-  global flow.flow_ticks
+  # global flow.flow_ticks
   global readings
   if len(readings) > int(moving_avg_time_frame / reading_interval):
     # drop first reading from array
