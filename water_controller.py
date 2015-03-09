@@ -5,6 +5,8 @@ except RuntimeError:
 
 from threading import Timer
 import time
+import arguments
+
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
@@ -29,7 +31,8 @@ flow_ticks = 0
 def flow_rate_callback(flow_sensor):
   global flow_ticks
   flow_ticks += 1
-  print "event was detected. flow_ticks: ", flow_ticks
+  if args.debug >= 2:
+    print "event was detected. flow_ticks: ", flow_ticks
 
 GPIO.add_event_detect(flow_sensor, GPIO.RISING, callback=flow_rate_callback, bouncetime=100)
 
@@ -44,7 +47,9 @@ reading_interval = 1
 readings = [0]
 
 def take_reading():
-  print "taking a reading"
+  if args.debug >=1:
+    print "taking a reading"
+
   global flow_ticks
   global readings
   if len(readings) > int(moving_avg_time_frame / reading_interval):
@@ -53,7 +58,8 @@ def take_reading():
   # add new reading to end of array
   readings.append(flow_ticks)
   flow_ticks = 0
-  print "readings: ", readings, "flow_ticks: ", flow_ticks
+  if args.debug >= 1:
+    print "readings: ", readings, "flow_ticks: ", flow_ticks
 
 def threaded_readings(interval):
   Timer(interval, take_reading, ()).start()
@@ -62,7 +68,9 @@ def add(x,y):
   return x+y
   
 def calculate_average():
-  print "calculating the average of ", readings
+  if args.debug >= 1:
+    print "calculating the average of ", readings
+
   return reduce(add, readings)/len(readings)
 
 ## Home mode (do not turn off water)
@@ -81,8 +89,10 @@ while True:
   threaded_readings(reading_interval)
 
 #testing code
-  print "Calculation #", x
-  print readings
-  print calculate_average()
+  if args.debug >=1:
+    print "Calculation #", x
+    print readings
+    print calculate_average()
+    
   time.sleep(5)
   x += 1
