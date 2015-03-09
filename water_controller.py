@@ -86,8 +86,12 @@ GPIO.add_event_detect(flow_sensor, GPIO.RISING, callback=flow.flow_rate_callback
 #   if args.debug >= 1:
 #     print "readings: ", readings, "flow_ticks: ", flow.flow_ticks
 
+x = 0
+config = ControllerConfig()
+flow_reader = FlowReader(config)
+
 def threaded_readings(interval, flow_reader):
-  Timer(interval, take_reading, ()).start()
+  Timer(interval, flow_reader.take_reading, ()).start()
 
 # def add(x,y):
 #   return x+y
@@ -106,9 +110,6 @@ def threaded_readings(interval, flow_reader):
 ## Manual override (turn water on or off? with a switch)
 
 # Main loop
-x = 0
-config = ControllerConfig()
-flow_reader = FlowReader(config)
 
 while True:
   threaded_readings(config.reading_interval, flow_reader)
