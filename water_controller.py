@@ -112,7 +112,7 @@ def threaded_readings(interval, flow_reader):
 # Main loop
 
 while True:
-  threaded_readings(config.reading_interval, flow_reader)
+  threaded_readings(config.reading_interval(), flow_reader)
 
 #testing code
   if args.debug >=1:
