@@ -8,7 +8,9 @@ import time
 import argparse
 
 from flow_counter import FlowCounter
-
+from controller_config import ControllerConfig
+from flow_reader import FlowReader
+from readings_calculator import ReadingsCalculator
 parser = argparse.ArgumentParser(description="Start and control water monitor system")
 
 parser.add_argument('-d', '--debug', type=int, choices=[0,1,2],
@@ -58,17 +60,17 @@ flow.flow_ticks = 0
 #   if args.debug >= 2:
 #     print "event was detected. flow.flow_ticks: ", flow.flow_ticks
 
-GPIO.add_event_detect(flow_sensor, GPIO.RISING, callback=flow_rate_callback, bouncetime=100)
+GPIO.add_event_detect(flow_sensor, GPIO.RISING, callback=flow.flow_rate_callback, bouncetime=100)
 
 ## calculate flowrate (if useful)
 
 ## calculate total flow over 5 minutes
 ### time frame for the moving average in seconds
-moving_avg_time_frame = 10
+# moving_avg_time_frame = 10
 
 ### Interval to take measurements in seconds
-reading_interval = 1
-readings = [0]
+# reading_interval = 1
+# readings = [0]
 
 # def take_reading():
 #   if args.debug >=1:
@@ -84,7 +86,7 @@ readings = [0]
 #   if args.debug >= 1:
 #     print "readings: ", readings, "flow_ticks: ", flow.flow_ticks
 
-def threaded_readings(interval):
+def threaded_readings(interval, flow_reader):
   Timer(interval, take_reading, ()).start()
 
 # def add(x,y):
@@ -105,14 +107,17 @@ def threaded_readings(interval):
 
 # Main loop
 x = 0
+config = ControllerConfig()
+flow_reader = FlowReader(config)
+
 while True:
-  threaded_readings(reading_interval)
+  threaded_readings(config.reading_interval, flow_reader)
 
 #testing code
   if args.debug >=1:
     print "Calculation #", x
-    print readings
-    print calculate_average()
+    print flow_reader.readings_set
+    print ReadingsCalculator(flow_reader.readings_set).calculate_average()
 
   time.sleep(5)
   x += 1
