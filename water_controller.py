@@ -31,7 +31,7 @@ flow_ticks = 0
 def flow_rate_callback(flow_sensor):
   global flow_ticks
   flow_ticks += 1
-  if args.debug >= 2:
+  if argparse.args.debug >= 2:
     print "event was detected. flow_ticks: ", flow_ticks
 
 GPIO.add_event_detect(flow_sensor, GPIO.RISING, callback=flow_rate_callback, bouncetime=100)
@@ -47,7 +47,7 @@ reading_interval = 1
 readings = [0]
 
 def take_reading():
-  if args.debug >=1:
+  if argparse.args.debug >=1:
     print "taking a reading"
 
   global flow_ticks
@@ -58,7 +58,7 @@ def take_reading():
   # add new reading to end of array
   readings.append(flow_ticks)
   flow_ticks = 0
-  if args.debug >= 1:
+  if argparse.args.debug >= 1:
     print "readings: ", readings, "flow_ticks: ", flow_ticks
 
 def threaded_readings(interval):
@@ -68,7 +68,7 @@ def add(x,y):
   return x+y
   
 def calculate_average():
-  if args.debug >= 1:
+  if argparse.args.debug >= 1:
     print "calculating the average of ", readings
 
   return reduce(add, readings)/len(readings)
@@ -89,10 +89,10 @@ while True:
   threaded_readings(reading_interval)
 
 #testing code
-  if args.debug >=1:
+  if argparse.args.debug >=1:
     print "Calculation #", x
     print readings
     print calculate_average()
-    
+
   time.sleep(5)
   x += 1
