@@ -89,7 +89,7 @@ GPIO.add_event_detect(flow_sensor, GPIO.RISING, callback=flow_counter.flow_rate_
 x = 0
 config = ControllerConfig()
 
-print config.moving_avg_interval
+print config().moving_avg_interval
 print config.reading_interval
 
 flow_reader = FlowReader(config)
