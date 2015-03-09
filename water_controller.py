@@ -29,7 +29,7 @@ flow_ticks = 0
 def flow_rate_callback(flow_sensor, flow_ticks):
   flow_ticks += 1
 
-GPIO.add_event_detect(flow_sensor, GPIO.RISING, callback=flow_rate_callback(flow_ticks), bouncetime=100)
+GPIO.add_event_detect(flow_sensor, GPIO.RISING, callback=flow_rate_callback(flow_sensor, flow_ticks), bouncetime=100)
 
 ## calculate flowrate (if useful)
 
