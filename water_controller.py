@@ -27,7 +27,8 @@ GPIO.setup(solenoid, GPIO.OUT)
 ## use GPIO callback to detect water flow
 flow_ticks = 0
 def flow_rate_callback(flow_sensor, flow_ticks):
-  global flow_ticks += 1
+  global flow_ticks
+  flow_ticks += 1
 
 GPIO.add_event_detect(flow_sensor, GPIO.RISING, callback=flow_rate_callback, bouncetime=100)
 
