@@ -76,6 +76,7 @@ def calculate_average():
 ## Manual override (turn water on or off? with a switch)
 
 # Main loop
+x = 0
 while True:
   threaded_readings(reading_interval)
 
