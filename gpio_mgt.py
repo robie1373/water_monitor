@@ -45,11 +45,11 @@ class GPIOManagement():
 # solenoid = property(**solenoid())
 
   def pin_config(self):
-  """ set up pins
-  input pin for flow sensor
-  input pin for manual override
-  output pin for solenoid
-  """
+    """ set up pins
+    input pin for flow sensor
+    input pin for manual override
+    output pin for solenoid
+    """
     GPIO.setup(self._flow_sensor, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     
     GPIO.setup(self._override, GPIO.IN, pull_up_down=GPIO.PUD_UP)
