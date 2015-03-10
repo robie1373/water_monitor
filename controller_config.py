@@ -1,4 +1,9 @@
 class ControllerConfig():
+
+  """Configuration settings for the flow_monitor instance. 
+  Includes moving_avg_interval which is the window (in seconds) over which we want to average. defaults to 5 min
+  Also reading_interval which is number of seconds to take between readings."""
+  
   def __init__(self):
     self._moving_avg_interval = 300
     self._reading_interval = 5
