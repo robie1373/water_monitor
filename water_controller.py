@@ -109,8 +109,7 @@ class Main():
 
 if __name__ == '__main__':
   print "running Main().run"
-  instance01_main = Main()
-  instance01_main.run
+  Main().run
 
 ## Home mode (do not turn off water)
 
