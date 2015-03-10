@@ -1,3 +1,8 @@
+try:
+    import RPi.GPIO as GPIO
+  except RuntimeError:
+    print("Error importing RPi.GPIO! This is probably because you need superuser privileges. You can achieve this by using 'sudo' to run your script")
+
 class GPIOManagement():
 
   """ setup GPIO related things like pins and events. """
@@ -8,7 +13,7 @@ class GPIOManagement():
     self._solenoid = 16
     GPIO.setmode(GPIO.BOARD)
     GPIO.setwarnings(False)
-    
+
   # def gen_config(self):
     
 
