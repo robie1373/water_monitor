@@ -33,16 +33,16 @@ class GPIOManagement():
       return locals()
   override = property(**override())
 
-def solenoid():
-    doc = "solenoid pin"
-    def fget(self):
-        return self._solenoid
-    def fset(self, value):
-        self._solenoid = value
-    def fdel(self):
-        del self._solenoid
-    return locals()
-solenoid = property(**solenoid())
+  def solenoid():
+      doc = "solenoid pin"
+      def fget(self):
+          return self._solenoid
+      def fset(self, value):
+          self._solenoid = value
+      def fdel(self):
+          del self._solenoid
+      return locals()
+  solenoid = property(**solenoid())
 
   def pin_config(self):
     """ set up pins
