@@ -39,7 +39,7 @@ class Main():
   def __init__(self):
     self._flow_counter            = FlowCounter
     self._flow_counter.flow_ticks = 0
-    
+
     if platform == "rpi":
       self._gpio                  = GPIOManagement()
       GPIO.add_event_detect(self._gpio.flow_sensor, GPIO.RISING,
@@ -50,6 +50,13 @@ class Main():
     self._flow_reader             = FlowReader(self._config)
     # _args                        = running_args
 
+  #########
+  #
+  # testing zone. Do not use these for anything but unittesting. They are all
+  # available from the various classes in which they belong. You have been
+  # warned.
+  #
+  ########
   def test_flow_counter():
       doc = "The test_flow_counter. do not use."
       def fget(self):
@@ -64,14 +71,20 @@ class Main():
       return locals()
   test_flow_reader = property(**test_flow_reader())
 
-  def readings_set():
+  def test_readings_set():
       doc = "a readings_set for testing purposes only. Do not use this. Use the one in FlowReader"
       def fget(self):
           return self._flow_reader.readings_set
       def fset(self, value):
           self._flow_reader.readings_set = value
       return locals()
-  readings_set = property(**readings_set())
+  test_readings_set = property(**test_readings_set())
+
+  ##########
+  #
+  # end of testing zone. Your regular service is resumed
+  #
+  ##########
 
   def threaded_readings(self):
     print "i am threaded readings"
@@ -96,7 +109,8 @@ class Main():
 
 if __name__ == '__main__':
   print "running Main().run"
-  Main().run
+  instance01_main = Main()
+  instance01_main.run
 
 ## Home mode (do not turn off water)
 
