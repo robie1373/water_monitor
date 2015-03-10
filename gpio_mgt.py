@@ -19,6 +19,8 @@ class GPIOManagement():
 
   # def gen_config(self):
     
+  def cleanup(self):
+    GPIO.cleanup()
 
   def flow_sensor():
       doc = "flow_sensor pin"

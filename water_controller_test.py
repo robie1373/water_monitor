@@ -8,6 +8,9 @@ class TestMain(unittest.TestCase):
     self.a_main = Main()
     self.a_main.test_readings_set = [0]
 
+  def tearDown(self):
+    
+
   def test_threaded_readings(self):
     self.assertEqual(threading.active_count(), 1)
     self.a_main.threaded_readings()
