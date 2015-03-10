@@ -6,10 +6,7 @@ from water_controller import Main
 class TestMain(unittest.TestCase):
   def setUp(self):
     self.a_main = Main()
-    self.a_main.test_readings_set = [0]
-
-  def tearDown(self):
-    
+    self.a_main.test_readings_set = [0]    
 
   def test_threaded_readings(self):
     self.assertEqual(threading.active_count(), 1)
