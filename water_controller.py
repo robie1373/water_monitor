@@ -60,7 +60,7 @@ flow_counter.flow_ticks = 0
 #   if args.debug >= 2:
 #     print "event was detected. flow.flow_ticks: ", flow.flow_ticks
 
-GPIO.add_event_detect(flow_sensor, GPIO.RISING, callback=flow_counter.flow_rate_callback, bouncetime=100)
+GPIO.add_event_detect(flow_sensor, GPIO.RISING, callback=flow_counter.flow_rate_callback(), bouncetime=100)
 
 ## calculate flowrate (if useful)
 
