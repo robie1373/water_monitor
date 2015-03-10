@@ -41,15 +41,15 @@ class Main():
     self._flow_counter.flow_ticks = 0
 
     if platform == "rpi":
-      # try:
       self._gpio                  = GPIOManagement()
-      # except RuntimeError as err:
-        # if re.match(err.args, "Conflicting edge detection already enabled for this GPIO channel"):
-          # print "GPIO already configured elsewhere."
-        # else:
-          # raise err
-
-      GPIO.add_event_detect(self._gpio.flow_sensor, GPIO.RISING, callback=self._flow_counter.flow_rate_callback, bouncetime=100)
+      try:
+        GPIO.add_event_detect(self._gpio.flow_sensor, GPIO.RISING, callback=self._flow_counter.flow_rate_callback, bouncetime=100)
+      except RuntimeError as err:
+        if re.match(err.args, "Conflicting edge detection already enabled for this GPIO channel"):
+          print "GPIO already configured elsewhere."
+          self._gpio.cleanup()
+        else:
+          raise err
 
     self._x                       = 0
     self._config                  = ControllerConfig()
