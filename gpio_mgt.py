@@ -11,38 +11,38 @@ class GPIOManagement():
     GPIO.setmode(GPIO.BOARD)
     GPIO.setwarnings(False)
 
-#   def flow_sensor():
-#       doc = "flow_sensor pin"
-#       def fget(self):
-#           return self._flow_sensor
-#       def fset(self, value):
-#           self._flow_sensor = value
-#       def fdel(self):
-#           del self._flow_sensor
-#       return locals()
-#   flow_sensor = property(**flow_sensor()) 
+  def flow_sensor():
+      doc = "flow_sensor pin"
+      def fget(self):
+          return self._flow_sensor
+      def fset(self, value):
+          self._flow_sensor = value
+      def fdel(self):
+          del self._flow_sensor
+      return locals()
+  flow_sensor = property(**flow_sensor()) 
 
-#   def override():
-#       doc = "override pin"
-#       def fget(self):
-#           return self._override
-#       def fset(self, value):
-#           self._override = value
-#       def fdel(self):
-#           del self._override
-#       return locals()
-#   override = property(**override())
+  def override():
+      doc = "override pin"
+      def fget(self):
+          return self._override
+      def fset(self, value):
+          self._override = value
+      def fdel(self):
+          del self._override
+      return locals()
+  override = property(**override())
 
-# def solenoid():
-#     doc = "solenoid pin"
-#     def fget(self):
-#         return self._solenoid
-#     def fset(self, value):
-#         self._solenoid = value
-#     def fdel(self):
-#         del self._solenoid
-#     return locals()
-# solenoid = property(**solenoid())
+def solenoid():
+    doc = "solenoid pin"
+    def fget(self):
+        return self._solenoid
+    def fset(self, value):
+        self._solenoid = value
+    def fdel(self):
+        del self._solenoid
+    return locals()
+solenoid = property(**solenoid())
 
   def pin_config(self):
     """ set up pins
