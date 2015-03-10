@@ -5,12 +5,12 @@ from controller_config import ControllerConfig
 
 class TestFlowReader(unittest.TestCase):
   def setUp(self):
-    self.a_flow_counter = FlowCounter()
-    self.a_flow_counter.flow_ticks = 5
-    self.a_controller_config = ControllerConfig()
-    self.a_controller_config.moving_avg_interval = 4
-    self.a_controller_config.reading_interval = 1
-    self.a_flow_reader = FlowReader(self.a_controller_config)
+    self.a_flow_counter                           = FlowCounter()
+    self.a_flow_counter.flow_ticks                = 5
+    self.a_controller_config                      = ControllerConfig()
+    self.a_controller_config.moving_avg_interval  = 4
+    self.a_controller_config.reading_interval     = 1
+    self.a_flow_reader            = FlowReader(self.a_controller_config)
 
   def test_Readings_Set_Init(self):
     self.assertEqual(self.a_flow_reader.readings_set, [0])
@@ -36,10 +36,10 @@ class TestFlowReader(unittest.TestCase):
 
 class TestFlowReaderWithDefaultSettings(unittest.TestCase):
   def setUp(self):
-    self.a_flow_counter = FlowCounter()
-    self.a_flow_counter.flow_ticks = 5
-    self.a_controller_config = ControllerConfig()
-    self.a_flow_reader = FlowReader(self.a_controller_config)
+    self.a_flow_counter             = FlowCounter()
+    self.a_flow_counter.flow_ticks  = 5
+    self.a_controller_config        = ControllerConfig()
+    self.a_flow_reader              = FlowReader(self.a_controller_config)
 
   def test_take_readings_limits_len_to_timeframe_over_interval(self):
     for _ in range(300):
