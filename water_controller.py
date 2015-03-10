@@ -58,16 +58,17 @@ class Main():
 
 # Main loop
   def run(self):
+    print "this is the head of main().run"
     while True:
+      print "I am true"
       self.threaded_readings()
-
-    #testing code
-      # if _args.debug >=1:
-
+      print "thread ran"
       time.sleep(5)
+      print "I slept"
       _x += 1
       print "Calculation #", _x, "\n", _flow_reader.readings_set, "\n",
       ReadingsCalculator(_flow_reader.readings_set).calculate_average()
+      print "ran the calculation"
 
 if __name__ == '__main__':
   print "running Main().run"
