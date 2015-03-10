@@ -65,7 +65,7 @@ class Main():
 
       time.sleep(5)
       _x += 1
-      return "Calculation #", _x, "\n", _flow_reader.readings_set, "\n",
+      print "Calculation #", _x, "\n", _flow_reader.readings_set, "\n",
       ReadingsCalculator(_flow_reader.readings_set).calculate_average()
 
 if __name__ == '__main__':
