@@ -36,25 +36,25 @@ class Main():
 
   # def __init__(self, running_args):
   def __init__(self):
-    _flow_counter = FlowCounter
-    _flow_counter.flow_ticks = 0
+    self._flow_counter = FlowCounter
+    self._flow_counter.flow_ticks = 0
     if platform == "rpi":
-      _gpio = GPIOManagement()
-      GPIO.add_event_detect(_gpio.flow_sensor, GPIO.RISING,
-        callback=_flow_counter.flow_rate_callback, bouncetime=100)
-    _x = 0
-    _config = ControllerConfig()
-    _flow_reader = FlowReader(_config)
+      self._gpio = GPIOManagement()
+      GPIO.add_event_detect(self._gpio.flow_sensor, GPIO.RISING,
+        callback=self._flow_counter.flow_rate_callback, bouncetime=100)
+    self._x = 0
+    self._config = ControllerConfig()
+    self._flow_reader = FlowReader(self._config)
     # _args = running_args
 
 
 ## calculate flowrate (if useful)
 
 
-  def threaded_readings():
+  def threaded_readings(self):
     print "i am threaded readings"
-    Timer(_config.reading_interval,
-     _flow_reader.take_reading(_flow_counter), ()).start()
+    Timer(self._config.reading_interval,
+     self._flow_reader.take_reading(self._flow_counter), ()).start()
 
 # Main loop
   def run(self):
@@ -65,9 +65,9 @@ class Main():
       print "thread ran"
       time.sleep(5)
       print "I slept"
-      _x += 1
-      print "Calculation #", _x, "\n", _flow_reader.readings_set, "\n",
-      ReadingsCalculator(_flow_reader.readings_set).calculate_average()
+      self._x += 1
+      print "Calculation #", self._x, "\n", self._flow_reader.readings_set, "\n",
+      ReadingsCalculator(self._flow_reader.readings_set).calculate_average()
       print "ran the calculation"
 
 if __name__ == '__main__':

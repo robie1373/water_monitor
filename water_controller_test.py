@@ -6,7 +6,7 @@ class TestMain(unittest.TestCase):
     self.a_main = Main()
 
   def test_threaded_readings(self):
-    self.assertEqual(self.a_main.threaded_re, "0")
+    self.assertEqual(self.a_main.threaded_readings(), "0")
 
 if __name__ == '__main__':
   unittest.main()
