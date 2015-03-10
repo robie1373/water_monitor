@@ -3,9 +3,9 @@ class GPIOManagement():
   """ setup GPIO related things like pins and events. """
 
   def __init__(self):
-    _flow_sensor = 7
-    _override = 11
-    _solenoid = 16
+    self._flow_sensor = 7
+    self._override = 11
+    self._solenoid = 16
 
   def gen_config(self):
     GPIO.setmode(GPIO.BOARD)
