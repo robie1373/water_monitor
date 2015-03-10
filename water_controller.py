@@ -69,6 +69,7 @@ class Main():
       ReadingsCalculator(_flow_reader.readings_set).calculate_average()
 
 if __name__ == '__main__':
+  print "running Main().run"
   Main().run
 
 ## Home mode (do not turn off water)
