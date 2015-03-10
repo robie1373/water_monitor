@@ -46,8 +46,9 @@ class Main():
       except RuntimeError as err:
         if re.match(err.args, "Conflicting edge detection already enabled for this GPIO channel"):
           print "GPIO already configured elsewhere."
-        else raise err
-        
+        else:
+          raise err
+
       GPIO.add_event_detect(self._gpio.flow_sensor, GPIO.RISING,
         callback=self._flow_counter.flow_rate_callback, bouncetime=100)
 
