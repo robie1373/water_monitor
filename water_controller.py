@@ -52,6 +52,7 @@ class Main():
 
 
   def threaded_readings():
+    print "i am threaded readings"
     Timer(_config.reading_interval,
      _flow_reader.take_reading(_flow_counter), ()).start()
 
