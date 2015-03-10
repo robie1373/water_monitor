@@ -6,10 +6,11 @@ class GPIOManagement():
     self._flow_sensor = 7
     self._override = 11
     self._solenoid = 16
-
-  def gen_config(self):
     GPIO.setmode(GPIO.BOARD)
     GPIO.setwarnings(False)
+    
+  # def gen_config(self):
+    
 
   def flow_sensor():
       doc = "flow_sensor pin"

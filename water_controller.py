@@ -40,7 +40,6 @@ class Main():
     _flow_counter.flow_ticks = 0
     if platform == "rpi":
       _gpio = GPIOManagement()
-      _gpio.gen_config
       GPIO.add_event_detect(_gpio.flow_sensor, GPIO.RISING,
         callback=_flow_counter.flow_rate_callback, bouncetime=100)
     _x = 0
