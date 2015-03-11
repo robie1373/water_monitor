@@ -65,7 +65,7 @@ class Main():
   ########
 
   def test_config():
-      doc = "The test_config do nout use."
+      doc = "The test_config do not use."
       def fget(self):
           return self._config
       def fset(self, value):
@@ -96,6 +96,9 @@ class Main():
       return locals()
   test_readings_set = property(**test_readings_set())
 
+  def main_take_reading(self, val):
+    self._flow_reader.take_reading(val)
+
   ##########
   #
   # end of testing zone. Your regular service is resumed
@@ -109,8 +112,8 @@ class Main():
     Timer(self._config.reading_interval,
      take_reading, ()).start()
 
-# Main loop
-  def run(self):
+  # Main loop
+  def runner(self):
     try:
       print "this is the head of main().run"
       while True:

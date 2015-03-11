@@ -18,7 +18,7 @@ class TestFlowReader(unittest.TestCase):
   def test_take_readings_limits_len_to_timeframe_over_interval(self):
     for _ in range(5):
       self.a_flow_counter.flow_ticks = _
-      self.a_flow_reader.take_reading(self.a_flow_counter)
+      self.a_flow_reader.take_reading(self.a_flow_counter.give_reading())
 
     self.assertEqual(len(self.a_flow_reader.readings_set), 
       int(self.a_controller_config.moving_avg_interval / self.a_controller_config.reading_interval) )
@@ -26,7 +26,7 @@ class TestFlowReader(unittest.TestCase):
   def test_take_readings_resets_ticks_to_zero(self):
     self.assertEqual(self.a_flow_counter.flow_ticks, 5)
     self.a_flow_counter.flow_ticks = 22
-    self.a_flow_reader.take_reading(self.a_flow_counter)
+    self.a_flow_reader.take_reading(self.a_flow_counter.give_reading())
     self.assertEqual(self.a_flow_counter.flow_ticks, 0)
 
 
@@ -40,7 +40,7 @@ class TestFlowReaderWithDefaultSettings(unittest.TestCase):
   def test_take_readings_limits_len_to_timeframe_over_interval(self):
     for _ in range(300):
       self.a_flow_counter.flow_ticks = _
-      self.a_flow_reader.take_reading(self.a_flow_counter)
+      self.a_flow_reader.take_reading(self.a_flow_counter.give_reading())
 
     self.assertEqual(len(self.a_flow_reader.readings_set), 
       int(self.a_controller_config.moving_avg_interval / self.a_controller_config.reading_interval) )
@@ -63,7 +63,7 @@ class TestFlowReaderNose:
 
   # @with_setup(setUpNose)
   def test_Take_readings_adds_an_element(self):
-    self.a_flow_reader.take_reading(self.a_flow_counter)
+    self.a_flow_reader.take_reading(self.a_flow_counter.give_reading())
     assert_equals(self.a_flow_reader.readings_set, [0,5])
 
 

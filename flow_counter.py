@@ -1,6 +1,6 @@
 class FlowCounter(int):
-  def __init__(self, value=0):
-    self.flow_ticks = value
+  def __init__(self):
+    self.flow_ticks = 0
 
   @property
   def flow_ticks(self):
@@ -16,3 +16,8 @@ class FlowCounter(int):
     self._flow_ticks += 1
     # if args.debug >= 2:
     # print "event was detected. flow_ticks: ", self._flow_ticks
+
+  def give_reading(self):
+    val = self.flow_ticks
+    self.flow_ticks = 0
+    return val
