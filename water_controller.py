@@ -37,7 +37,7 @@ class Main():
 
   # def __init__(self, running_args):
   def __init__(self):
-    self._flow_counter            = FlowCounter
+    self._flow_counter            = FlowCounter()
     self._flow_counter.flow_ticks = 0
 
     if platform == "rpi":
@@ -63,6 +63,16 @@ class Main():
   # warned.
   #
   ########
+
+  def test_config():
+      doc = "The test_config do nout use."
+      def fget(self):
+          return self._config
+      def fset(self, value):
+          self._config = value
+      return locals()
+  test_config = property(**test_config())
+
   def test_flow_counter():
       doc = "The test_flow_counter. do not use."
       def fget(self):

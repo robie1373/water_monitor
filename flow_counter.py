@@ -15,4 +15,4 @@ class FlowCounter(int):
   def flow_rate_callback(self):
     self._flow_ticks += 1
     # if args.debug >= 2:
-    #   print "event was detected. flow_ticks: ", self._flow_ticks
+    print "event was detected. flow_ticks: ", self._flow_ticks
