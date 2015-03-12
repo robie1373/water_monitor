@@ -1,7 +1,11 @@
-try:
-  import RPi.GPIO as GPIO
-except RuntimeError:
-  print("Error importing RPi.GPIO! This is probably because you need superuser privileges. You can achieve this by using 'sudo' to run your script")
+import platform
+import re
+
+if re.match("arm", platform.machine()):
+  try:
+    import RPi.GPIO as GPIO
+  except RuntimeError:
+    print("Error importing RPi.GPIO! This is probably because you need superuser privileges. You can achieve this by using 'sudo' to run your script")
 
 class GPIOManagement():
 
@@ -23,7 +27,7 @@ class GPIOManagement():
 
     GPIO.setup(self._solenoid,      GPIO.OUT)
     GPIO.output(self._solenoid,     GPIO.HIGH)
-    
+
     GPIO.setup(self._heat_tape,     GPIO.OUT)
     GPIO.output(self._heat_tape,    GPIO.HIGH)
     
@@ -62,3 +66,26 @@ class GPIOManagement():
           del self._solenoid
       return locals()
   solenoid = property(**solenoid())
+
+  def relay_closed():
+      doc = "The relay_closed property."
+      def fget(self):
+          return self._relay_closed
+      def fset(self, value):
+          self._relay_closed = value
+      def fdel(self):
+          del self._relay_closed
+      return locals()
+  relay_closed = property(**relay_closed())
+
+  def relay_open():
+      doc = "The relay_open property."
+      def fget(self):
+          return self._relay_open
+      def fset(self, value):
+          self._relay_open = value
+      def fdel(self):
+          del self._relay_open
+      return locals()
+  relay_open = property(**relay_open())
+
