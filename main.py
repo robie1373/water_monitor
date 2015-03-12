@@ -79,8 +79,9 @@ class Main():
       return locals()
   readings_calculator = property(**readings_calculator())
 
-  def main_take_reading(self, flow_ticks):
-    self._flow_reader.take_reading(flow_ticks)
+  def main_take_reading(self, ticks):
+    print "ticks: ", ticks
+    self._flow_reader.take_reading(ticks)
     self._flow_counter.flow_ticks = 0
 
   def threaded_readings(self):
