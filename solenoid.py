@@ -19,3 +19,4 @@ class Solenoid():
 
   def close(self):
     GPIO.output(self._gpio_mgt.solenoid, self._gpio_mgt.relay_closed)
+    return "opened=False"
