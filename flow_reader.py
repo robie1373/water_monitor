@@ -25,5 +25,5 @@ class FlowReader():
       # drop first reading from array
       self._readings_set.pop(0)
     # add new reading to end of array
-    self._readings_set.append(flow_reading)
+    return self._readings_set.append(flow_reading)
 
