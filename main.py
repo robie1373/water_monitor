@@ -15,7 +15,7 @@ if re.match("arm", platform.machine()):
 
   from gpio_mgt import GPIOManagement
   platform = "rpi"
-  print "I am running on an rpi"
+  # print "I am running on an rpi"
 
 class Main():
   def __init__(self):
