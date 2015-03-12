@@ -1,6 +1,4 @@
 class ReadingsCalculator:
-  # def __init__(self):
-    # self._readings_set = readings_set
 
   def __add(self,x,y):
     return x+y

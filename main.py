@@ -15,14 +15,13 @@ if re.match("arm", platform.machine()):
 
   from gpio_mgt import GPIOManagement
   platform = "rpi"
-  # print "I am running on an rpi"
 
 class Main():
   def __init__(self):
-    self._config          =ControllerConfig()
-    self._flow_reader     = FlowReader(self._config)
-    self._flow_counter    = FlowCounter()
-    self._readings_calculator = ReadingsCalculator()
+    self._config                  =ControllerConfig()
+    self._flow_reader             = FlowReader(self._config)
+    self._flow_counter            = FlowCounter()
+    self._readings_calculator     = ReadingsCalculator()
 
     if platform == "rpi":
       self._gpio                  = GPIOManagement()
@@ -78,11 +77,6 @@ class Main():
           del self._readings_calculator
       return locals()
   readings_calculator = property(**readings_calculator())
-
-  # def main_take_reading(self, ticks):
-  #   print "ticks: ", ticks
-  #   self._flow_reader.take_reading(ticks)
-  #   self._flow_counter.flow_ticks = 0
 
   def threaded_readings(self):
     Timer(self._config.reading_interval, self._flow_reader.take_reading, args=(self._flow_counter.give_reading(),)).start()

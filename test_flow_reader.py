@@ -46,7 +46,6 @@ class TestFlowReaderWithDefaultSettings(unittest.TestCase):
       int(self.a_controller_config.moving_avg_interval / self.a_controller_config.reading_interval) )
 
 class TestFlowReaderNose:
-  # @classmethod
   def setUp(self):
     self.a_flow_counter                           = FlowCounter()
     self.a_flow_counter.flow_ticks                = 5
@@ -55,17 +54,14 @@ class TestFlowReaderNose:
     self.a_controller_config.reading_interval     = 1
     self.a_flow_reader            = FlowReader(self.a_controller_config)
 
-  # @with_setup(setUpNose)
   def test_Readings_Set_Init(self):
     another_controller_config = ControllerConfig()
     another_flow_reader = FlowReader(another_controller_config)
     assert_equals(another_flow_reader.readings_set, [0])
 
-  # @with_setup(setUpNose)
   def test_Take_readings_adds_an_element(self):
     self.a_flow_reader.take_reading(self.a_flow_counter.give_reading())
     assert_equals(self.a_flow_reader.readings_set, [0,5])
-
 
 if __name__ == '__main__':
   unittest.main()

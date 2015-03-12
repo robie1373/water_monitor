@@ -8,20 +8,24 @@ class GPIOManagement():
   """ setup GPIO related things like pins and events. """
 
   def __init__(self):
-    self._flow_sensor = 7
-    self._override = 11
-    self._solenoid = 16
-    self._heat_tape = 18
+    self._relay_closed  = GPIO.HIGH
+    self._relay_open    = GPIO.LOW
+    self._flow_sensor   = 7
+    self._override      = 11
+    self._solenoid      = 16
+    self._heat_tape     = 18
+
     GPIO.setmode(GPIO.BOARD)
     GPIO.setwarnings(False)
-    GPIO.setup(self._flow_sensor, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-    GPIO.setup(self._override, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.setup(self._solenoid, GPIO.OUT)
-    GPIO.output(self._solenoid, GPIO.LOW)
-    GPIO.setup(self._heat_tape, GPIO.OUT)
-    GPIO.output(self._heat_tape, GPIO.LOW)
 
-  # def gen_config(self):
+    GPIO.setup(self._flow_sensor,   GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(self._override,      GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+    GPIO.setup(self._solenoid,      GPIO.OUT)
+    GPIO.output(self._solenoid,     GPIO.HIGH)
+    
+    GPIO.setup(self._heat_tape,     GPIO.OUT)
+    GPIO.output(self._heat_tape,    GPIO.HIGH)
     
   def cleanup(self):
     GPIO.cleanup()

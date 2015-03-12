@@ -13,20 +13,12 @@ if re.match("arm", platform.machine()):
 
 from threading import Timer
 import time
-import argparse
 
 from flow_counter import FlowCounter
 from controller_config import ControllerConfig
 from flow_reader import FlowReader
 from readings_calculator import ReadingsCalculator
 
-# parser = argparse.ArgumentParser(description="Start and control water monitor system")
-
-# parser.add_argument('-d', '--debug', type=int, choices=[0,1,2],
-#  help="0 - no debug (default), 1 - print activity, 2 - print sensor events and activity",
-#  default=0)
-
-# args = parser.parse_args()
 
 
 # set up code

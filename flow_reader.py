@@ -1,13 +1,9 @@
 class FlowReader():
   def __init__(self, config):
-    self._readings_set = [0]
-    self._config = config
-    self._moving_avg_interval = config.moving_avg_interval
-    self._reading_interval = config.reading_interval
-
-  # @property
-  # def readings_set(self):
-  #   return self._readings_set
+    self._readings_set          = [0]
+    self._config                = config
+    self._moving_avg_interval   = config.moving_avg_interval
+    self._reading_interval      = config.reading_interval
 
   def readings_set():
       doc = "The readings_set property."

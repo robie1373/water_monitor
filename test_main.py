@@ -29,12 +29,3 @@ class TestMain:
 
   def test_main_averages(self):
     assert_equal(self.a_main.readings_calculator.calculate_average([8,4,6]), 6)
-
-  # def test_main_take_readings(self):
-  #   self.a_main._flow_counter.flow_ticks = 4
-  #   self.a_main.main_take_reading(self.a_main._flow_counter.flow_ticks)
-  #   assert_equal(self.a_main.flow_reader.readings_set, [0,4])
-  #   assert_equal(self.a_main._flow_counter.flow_ticks, 0)
-
-  # def test_what_did_you_do(self):
-    # assert_equal("you put the callback into main_take_reading and then zero the flow_ticks. then the radings_set stopped updating.","")
