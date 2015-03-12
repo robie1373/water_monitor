@@ -1,5 +1,6 @@
 import platform
 import re
+import time
 from flow_reader import FlowReader
 from controller_config import ControllerConfig
 from flow_counter import FlowCounter
