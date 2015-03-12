@@ -86,6 +86,7 @@ class Main():
       while True:
         self.threaded_readings()
         print "Calculation: ", self.readings_calculator.calculate_average(self.flow_reader.readings_set)
+        time.sleep(5)
     finally:
       self._gpio.cleanup()
 
