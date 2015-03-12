@@ -17,7 +17,9 @@ class GPIOManagement():
     GPIO.setup(self._flow_sensor, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(self._override, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     GPIO.setup(self._solenoid, GPIO.OUT)
+    GPIO.output(self._solenoid, GPIO.LOW)
     GPIO.setup(self._heat_tape, GPIO.OUT)
+    GPIO.output(self._heat_tape, GPIO.LOW)
 
   # def gen_config(self):
     
@@ -56,10 +58,3 @@ class GPIOManagement():
           del self._solenoid
       return locals()
   solenoid = property(**solenoid())
-
-  # def pin_config(self):
-  #   """ set up pins
-  #   input pin for flow sensor
-  #   input pin for manual override
-  #   output pin for solenoid
-  #   """
