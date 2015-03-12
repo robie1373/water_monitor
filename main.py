@@ -15,6 +15,7 @@ class Main():
 
     if platform == "rpi":
       self._gpio                  = GPIOManagement()
+      print "I am an RPi"
       try:
         GPIO.add_event_detect(self._gpio.flow_sensor, GPIO.RISING, callback=self._flow_counter.flow_rate_callback, bouncetime=100)
       except RuntimeError as err:
@@ -80,4 +81,4 @@ class Main():
       self._gpio.cleanup()
 
 if __name__ == '__main__':
-  Main().runner
+  Main().runner()
