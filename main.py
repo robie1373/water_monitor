@@ -86,6 +86,7 @@ class Main():
     try:
       while True:
         self.threaded_readings()
+        print "readings_set", self.flow_reader.readings_set
         print "Calculation: ", self.readings_calculator.calculate_average(self.flow_reader.readings_set)
         time.sleep(5)
     finally:
