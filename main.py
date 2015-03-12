@@ -6,6 +6,16 @@ from flow_counter import FlowCounter
 from threading import Timer
 from readings_calculator import ReadingsCalculator
 
+if re.match("arm", platform.machine()):
+  try:
+    import RPi.GPIO as GPIO
+  except RuntimeError:
+    print("Error importing RPi.GPIO! This is probably because you need superuser privileges. You can achieve this by using 'sudo' to run your script")
+
+  from gpio_mgt import GPIOManagement
+  platform = "rpi"
+  print "I am running on an rpi"
+
 class Main():
   def __init__(self):
     self._config          =ControllerConfig()
@@ -15,7 +25,6 @@ class Main():
 
     if platform == "rpi":
       self._gpio                  = GPIOManagement()
-      print "I am an RPi"
       try:
         GPIO.add_event_detect(self._gpio.flow_sensor, GPIO.RISING, callback=self._flow_counter.flow_rate_callback, bouncetime=100)
       except RuntimeError as err:
