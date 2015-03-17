@@ -7,6 +7,7 @@ class ControllerConfig():
   def __init__(self):
     self._moving_avg_interval   = 300
     self._reading_interval      = 5
+    self._shutoff_value         = 1 # gallon
 
   def moving_avg_interval():
       doc = "The moving_avg_interval value."
@@ -29,3 +30,14 @@ class ControllerConfig():
           del self._reading_interval
       return locals()
   reading_interval = property(**reading_interval()) 
+
+  def shutoff_value():
+      doc = "The shutoff_value property."
+      def fget(self):
+          return self._shutoff_value
+      def fset(self, value):
+          self._shutoff_value = value
+      def fdel(self):
+          del self._shutoff_value
+      return locals()
+  shutoff_value = property(**shutoff_value())
