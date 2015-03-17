@@ -21,3 +21,15 @@ class Solenoid():
   def close(self):
     GPIO.output(self._gpio_mgt.solenoid, self._gpio_mgt.relay_closed)
     self._state = "opened=False"
+
+  def state():
+      doc = "The state property."
+      def fget(self):
+          return self._state
+      def fset(self, value):
+          self._state = value
+      def fdel(self):
+          del self._state
+      return locals()
+  state = property(**state()) 
+  
