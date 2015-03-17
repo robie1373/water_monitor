@@ -24,8 +24,6 @@ class TestFlowSwitcher():
     high_result = self.a_flow_switcher.switch_flow(high_decision, self.mock_solenoid)
     assert_equal(self.mock_solenoid.sol_state, "open")
 
-
-
 class MockSolenoid:
   def __init__(self):
     self._sol_state = None

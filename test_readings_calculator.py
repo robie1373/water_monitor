@@ -1,5 +1,5 @@
-# import unittest
 from nose.tools import assert_equal
+from nose.tools import assert_almost_equals
 from readings_calculator import ReadingsCalculator
   
 class TestReadingsCalculator():
@@ -14,8 +14,9 @@ class TestReadingsCalculator():
     assert_equal(self.a_readings_calculator.calculate_total(self.a_reading_set), 33)
 
 
-  """ FlowSwitcher.switch_flow_decider() can't handle different units.
-      At this point I'm just using gallons rather than fix that.
+  """ 
+  FlowSwitcher.switch_flow_decider() can't handle different units.
+  At this point I'm just using gallons rather than fix that.
   """
   # def test_to_liters(self):
   #   a = 10
@@ -26,6 +27,4 @@ class TestReadingsCalculator():
     ticks_to_liter_constant = 7.5
     seconds = 60
     liters_per_gallon = 3.79
-    assert_equal(self.a_readings_calculator.to_gallons(a), a * ticks_to_liter_constant * seconds * liters_per_gallon)
-# if __name__ == '__main__':
-#   unittest.main()
+    assert_almost_equals(self.a_readings_calculator.to_gallons(a), a / (ticks_to_liter_constant * seconds) * liters_per_gallon)

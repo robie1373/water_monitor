@@ -23,7 +23,7 @@ class TestMain:
     self.a_main.config.reading_interval = 0.5
     assert_equal(self.a_main.flow_reader.readings_set, [0])
     self.a_main.flow_counter.flow_ticks = 8
-    self.a_main.threaded_readings()
+    self.a_main.start_readings_thread()
     time.sleep(0.6)
     assert_equal(self.a_main.flow_reader.readings_set, [0,8])
 

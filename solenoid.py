@@ -12,11 +12,12 @@ if re.match("arm", platform.machine()):
 class Solenoid():
   def __init__(self):
     self._gpio_mgt = GPIOManagement()
+    self._state = None
 
   def open(self):
     GPIO.output(self._gpio_mgt.solenoid, self._gpio_mgt.relay_open)
-    return "opened=True"
+    self._state = "opened=True"
 
   def close(self):
     GPIO.output(self._gpio_mgt.solenoid, self._gpio_mgt.relay_closed)
-    return "opened=False"
+    self._state = "opened=False"

@@ -10,7 +10,9 @@ if re.match("arm", platform.machine()):
       self.a_solenoid = Solenoid()
 
     def test_solenoid_can_open(self):
-      assert_equal(self.a_solenoid.open(), "opened=True")
+      self.a_solenoid.open()
+      assert_equal(self.a_solenoid.state(), "opened=True")
 
     def test_solenoid_can_close(self):
-      assert_equal(self.a_solenoid.close(), "opened=False")
+      self.a_solenoid.close()
+      assert_equal(self.a_solenoid.state(), "opened=False")

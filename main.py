@@ -78,15 +78,17 @@ class Main():
       return locals()
   readings_calculator = property(**readings_calculator())
 
-  def threaded_readings(self):
+  def start_readings_thread(self):
     Timer(self._config.reading_interval, self._flow_reader.take_reading, args=(self._flow_counter.give_reading(),)).start()
 
   def runner(self):
     try:
       while True:
-        self.threaded_readings()
+        self.start_readings_thread()
         print "readings_set", self.flow_reader.readings_set
-        print "Calculation: ", self.readings_calculator.calculate_average(self.flow_reader.readings_set)
+        current_ticks = self.readings_calculator.calculate_total(self.flow_reader.readings_set)
+        current_gals = self.readings_calculator.to_gallons(current_ticks)
+        print "Calculation: ", current_gals, "gallons"
         time.sleep(5)
     finally:
       self._gpio.cleanup()

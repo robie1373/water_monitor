@@ -5,8 +5,8 @@ class ControllerConfig():
   Also reading_interval which is number of seconds to take between readings."""
   
   def __init__(self):
-    self._moving_avg_interval   = 300
-    self._reading_interval      = 5
+    self._moving_avg_interval   = 300 # seconds
+    self._reading_interval      = 5 # seconds
     self._shutoff_value         = 1 # gallon
 
   def moving_avg_interval():

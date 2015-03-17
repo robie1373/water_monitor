@@ -14,7 +14,7 @@ class ReadingsCalculator:
     return reduce(self.__add, readings_set)
 
   # def to_liters(self, readings_total):
-  #   return readings_total * self.__ticks_to_liter_constant * self.__ticks_to_total_time_const
+  #   return readings_total / (self.__ticks_to_liter_constant * self.__ticks_to_total_time_const)
 
   def to_gallons(self, readings_total):
-    return readings_total * self.__ticks_to_liter_constant * self.__ticks_to_total_time_const * self.__liters_per_gallon
+    return self.__liters_per_gallon * readings_total / (self.__ticks_to_liter_constant * self.__ticks_to_total_time_const) 
