@@ -7,6 +7,7 @@ from flow_counter import FlowCounter
 from threading import Timer
 from readings_calculator import ReadingsCalculator
 from flow_switcher import FlowSwitcher
+from solenoid import Solenoid
 
 if re.match("arm", platform.machine()):
   try:
@@ -24,6 +25,7 @@ class Main():
     self._flow_counter            = FlowCounter()
     self._readings_calculator     = ReadingsCalculator()
     self._flow_switcher           = FlowSwitcher()
+    self._solenoid                = Solenoid()
 
     if platform == "rpi":
       self._gpio                  = GPIOManagement()
@@ -91,6 +93,17 @@ class Main():
       return locals()
   flow_switcher = property(**flow_switcher()) 
 
+  def solenoid():
+      doc = "The solenoid property."
+      def fget(self):
+          return self._solenoid
+      def fset(self, value):
+          self._solenoid = value
+      def fdel(self):
+          del self._solenoid
+      return locals()
+  solenoid = property(**solenoid()) 
+
 
   def start_readings_thread(self):
     Timer(self._config.reading_interval, self._flow_reader.take_reading, args=(self._flow_counter.give_reading(),)).start()
@@ -104,7 +117,7 @@ class Main():
         current_gals = self.readings_calculator.to_gallons(current_ticks)
         print "Calculation: ", current_gals, "gallons"
         close_valve_query = self.flow_switcher.switch_flow_decider(current_gals)
-        self.flow_switcher.switch_flow(close_valve_query)
+        self.flow_switcher.switch_flow(close_valve_query, self.solenoid)
         time.sleep(5)
     finally:
       self._gpio.cleanup()
