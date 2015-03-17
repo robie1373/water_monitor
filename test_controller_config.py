@@ -21,3 +21,11 @@ class TestControllerConfig():
 
   def test_config_includes_shutoff_value(self):
     assert_equal(self.a_controller_config.shutoff_value, 1)
+
+  def test_config_emergency_status_starts_clear(self):
+    assert_equal(self.a_controller_config.emergency_status, False)
+
+  def test_config_emergency_status_can_be_set(self):
+    assert_equal(self.a_controller_config.emergency_status, False)
+    self.a_controller_config.emergency_status = True
+    assert_equal(self.a_controller_config.emergency_status, True)    

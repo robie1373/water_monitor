@@ -8,6 +8,7 @@ class ControllerConfig():
     self._moving_avg_interval   = 300 # seconds
     self._reading_interval      = 5 # seconds
     self._shutoff_value         = 1 # gallon
+    self._emergency_status      = False
 
   def moving_avg_interval():
       doc = "The moving_avg_interval value."
@@ -41,3 +42,15 @@ class ControllerConfig():
           del self._shutoff_value
       return locals()
   shutoff_value = property(**shutoff_value())
+
+  def emergency_status():
+      doc = "The emergency_status property."
+      def fget(self):
+          return self._emergency_status
+      def fset(self, value):
+          self._emergency_status = value
+      def fdel(self):
+          del self._emergency_status
+      return locals()
+  emergency_status = property(**emergency_status()) 
+  
