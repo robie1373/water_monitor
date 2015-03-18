@@ -119,7 +119,7 @@ class Main():
         close_valve_query = self.flow_switcher.switch_flow_decider(current_gals)
         self.flow_switcher.switch_flow(close_valve_query, self.solenoid)
         time.sleep(5)
-    except KeyboardInterrupt
+    except KeyboardInterrupt:
       print "kthxbai"
       sys.exit()
     finally:
