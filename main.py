@@ -116,12 +116,12 @@ class Main():
         print "readings_set", self.flow_reader.readings_set
         current_ticks = self.readings_calculator.calculate_total(self.flow_reader.readings_set)
         current_gals = self.readings_calculator.to_gallons(current_ticks)
-        print "Calculation: ", current_gals, "gallons"
+        print "Total flow in last ", self.config.moving_avg_interval, " seconds: ", current_gals, "gallons"
         close_valve_query = self.flow_switcher.switch_flow_decider(current_gals)
         self.flow_switcher.switch_flow(close_valve_query, self.solenoid)
         time.sleep(5)
     except KeyboardInterrupt:
-      print "kthxbai"
+      print "\nkthxbai"
       sys.exit()
     finally:
       self._gpio.cleanup()
