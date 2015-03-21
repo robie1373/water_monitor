@@ -18,7 +18,7 @@ class GPIOManagement():
     self._override      = 11
     self._solenoid      = 16
     self._heat_tape     = 18
-    self._grean_led     = 13
+    self._green_led     = 13
     self._red_led       = 15
 
     GPIO.setmode(GPIO.BOARD)
