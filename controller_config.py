@@ -51,7 +51,7 @@ class ControllerConfig():
           pass
 
       print("somehow I ended up in fake-gpio land.")
-      self._gpio            = GPIOFake()
+      # self._gpio            = GPIOFake()
       self._solenoid        = None
 
   def flow_counter():
