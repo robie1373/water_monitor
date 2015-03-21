@@ -1,6 +1,6 @@
 from nose.tools import assert_equal
 from controller_config import ControllerConfig
-from gpio_mgt import GPIOManagement
+# from gpio_mgt import GPIOManagement
 
 class TestControllerConfig():
   def setUp(self):
@@ -31,9 +31,9 @@ class TestControllerConfig():
 
   if re.match("arm", platform.machine()):
     def test_config_emergency_status_can_be_set(self):
-      gpio = GPIOManagement()
+      # gpio = GPIOManagement()
       assert_equal(self.a_controller_config.emergency_status, False)
-      self.a_controller_config.set_emergency_status(gpio, True)
+      self.a_controller_config.set_emergency_status(True)
       assert_equal(self.a_controller_config.emergency_status, True)    
   else:
     pass
