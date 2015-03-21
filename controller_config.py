@@ -57,11 +57,11 @@ class ControllerConfig():
   def set_emergency_status(self, gpio, state):
     if state == True:
       self.emergency_status = True
-      self.gpio.set_green_led("off")
-      self.gpio.set_red_led("on")
+      gpio.set_green_led("off")
+      gpio.set_red_led("on")
     elif state == False:
       self.emergency_status = False
-      self.gpio.set_green_led("on")
-      self.gpio.set_red_led("off")
+      gpio.set_green_led("on")
+      gpio.set_red_led("off")
     else:
       raise ValueError("Emergency status must be True or False")
