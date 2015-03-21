@@ -15,7 +15,7 @@ class GPIOManagement():
     self._relay_closed  = GPIO.HIGH
     self._relay_open    = GPIO.LOW
     self._flow_sensor   = 7
-    # self._override      = 11
+    self._override      = 11
     self._solenoid      = 16
     self._heat_tape     = 18
     self._grean_led     = 13
@@ -53,16 +53,16 @@ class GPIOManagement():
       return locals()
   flow_sensor = property(**flow_sensor()) 
 
-  # def override():
-  #     doc = "override pin"
-  #     def fget(self):
-  #         return self._override
-  #     def fset(self, value):
-  #         self._override = value
-  #     def fdel(self):
-  #         del self._override
-  #     return locals()
-  # override = property(**override())
+  def override():
+      doc = "override pin"
+      def fget(self):
+          return self._override
+      def fset(self, value):
+          self._override = value
+      def fdel(self):
+          del self._override
+      return locals()
+  override = property(**override())
 
   def solenoid():
       doc = "solenoid pin"
