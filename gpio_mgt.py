@@ -15,9 +15,11 @@ class GPIOManagement():
     self._relay_closed  = GPIO.HIGH
     self._relay_open    = GPIO.LOW
     self._flow_sensor   = 7
-    self._override      = 11
+    # self._override      = 11
     self._solenoid      = 16
     self._heat_tape     = 18
+    self._grean_led     = 13
+    self._red_led       = 15
 
     GPIO.setmode(GPIO.BOARD)
     GPIO.setwarnings(False)
@@ -30,6 +32,12 @@ class GPIOManagement():
 
     GPIO.setup(self._heat_tape,     GPIO.OUT)
     GPIO.output(self._heat_tape,    GPIO.HIGH)
+    
+    GPIO.setup(self._green_led,     GPIO.OUT)
+    GPIO.output(self._green_led,    GPIO.LOW)
+    
+    GPIO.setup(self._red_led,       GPIO.OUT)
+    GPIO.output(self._red_led,      GPIO.LOW)
     
   def cleanup(self):
     GPIO.cleanup()
@@ -45,16 +53,16 @@ class GPIOManagement():
       return locals()
   flow_sensor = property(**flow_sensor()) 
 
-  def override():
-      doc = "override pin"
-      def fget(self):
-          return self._override
-      def fset(self, value):
-          self._override = value
-      def fdel(self):
-          del self._override
-      return locals()
-  override = property(**override())
+  # def override():
+  #     doc = "override pin"
+  #     def fget(self):
+  #         return self._override
+  #     def fset(self, value):
+  #         self._override = value
+  #     def fdel(self):
+  #         del self._override
+  #     return locals()
+  # override = property(**override())
 
   def solenoid():
       doc = "solenoid pin"
@@ -89,3 +97,10 @@ class GPIOManagement():
       return locals()
   relay_open = property(**relay_open())
 
+  def green_led(self, state):
+    if state == "on":
+      GPIO.output(self._green_led, HIGH)
+    elif state == "off":
+      GPIO.output(self._green_led, LOW)
+    else:
+      raise ValueError("State must be 'on' or 'off'")
