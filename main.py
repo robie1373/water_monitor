@@ -28,8 +28,9 @@ class Main():
     self._flow_switcher           = FlowSwitcher(self._config)
 
     if platform == "rpi":
-      self._solenoid                = Solenoid()
+      self._solenoid              = Solenoid()
       self._gpio                  = GPIOManagement()
+      self._gpio.green_led("on")
       try:
         GPIO.add_event_detect(self._gpio.flow_sensor, GPIO.RISING, callback=self._flow_counter.flow_rate_callback, bouncetime=100)
       except RuntimeError as err:

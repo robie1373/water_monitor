@@ -97,10 +97,18 @@ class GPIOManagement():
       return locals()
   relay_open = property(**relay_open())
 
-  def green_led(self, state):
+  def set_green_led(self, state):
     if state == "on":
       GPIO.output(self._green_led, HIGH)
     elif state == "off":
       GPIO.output(self._green_led, LOW)
+    else:
+      raise ValueError("State must be 'on' or 'off'")
+
+  def set_red_led(self, state):
+    if state == "on":
+      GPIO.output(self._red_led, HIGH)
+    elif state == "off":
+      GPIO.output(self._red_led, LOW)
     else:
       raise ValueError("State must be 'on' or 'off'")
