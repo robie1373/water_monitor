@@ -13,6 +13,8 @@ if re.match("arm", platform.machine()):
 
   from gpio_mgt import GPIOManagement
   platform = "rpi"
+elif re.match('x86_64', platform.machine()):
+  platform = 'non-pi'
 
 class ControllerConfig():
 
@@ -41,13 +43,14 @@ class ControllerConfig():
           self._gpio.cleanup()
         else:
           raise err
-    else:
+    elif platform == 'non-pi':
       class GPIOFake:
         def set_green_led(self, msg):
           pass
         def set_red_led(self, msg):
           pass
 
+      print("somehow I ended up in fake-gpio land.")
       self._gpio            = GPIOFake()
       self._solenoid        = None
 
