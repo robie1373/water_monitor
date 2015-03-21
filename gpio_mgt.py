@@ -107,8 +107,8 @@ class GPIOManagement():
 
   def set_red_led(self, state):
     if state == "on":
-      GPIO.output(self._red_led, HIGH)
+      GPIO.output(self._red_led, GPIO.HIGH)
     elif state == "off":
-      GPIO.output(self._red_led, LOW)
+      GPIO.output(self._red_led, GPIO.LOW)
     else:
       raise ValueError("State must be 'on' or 'off'")
