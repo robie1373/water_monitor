@@ -20,6 +20,6 @@ class FlowSwitcher():
         """
     elif decision == True:
       solenoid.close()
-      self._config.emergency_status = True
+      self._config.set_emergency_status(True)
     else:
       raise ValueError("Solenoid must be True or False")
